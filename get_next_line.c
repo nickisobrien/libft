@@ -6,7 +6,7 @@
 /*   By: nobrien <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:51:24 by nobrien           #+#    #+#             */
-/*   Updated: 2018/03/06 11:51:57 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/03/16 14:06:12 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,27 @@ void		merge(const int fd, char **buf, int *ret)
 	char		*rmleaks;
 
 	rmleaks = *buf;
-	if ((*ret = read(fd, str, BUFF_SIZE)) == -1)
+	if ((*ret = read(fd, str, BUFF_SIZE)) <= 0)
 		return ;
 	str[*ret] = '\0';
 	*buf = ft_strjoin(*buf, str);
-	ft_strdel(&rmleaks);
+	free(rmleaks);
 }
 
 int			loop(const int fd, char **buf, int *ret, char **line)
 {
 	char *ptr;
+	char *ptr2;
 
 	while (*ret > 0)
 	{
 		if ((ptr = ft_strchr(*buf, '\n')))
 		{
+			ptr2 = *buf;
 			*ptr = '\0';
-			*line = *buf;
+			*line = ft_strdup(*buf);
 			*buf = ft_strdup(ptr + 1);
+			free(ptr2);
 			return (1);
 		}
 		merge(fd, buf, ret);
@@ -45,12 +48,12 @@ int			loop(const int fd, char **buf, int *ret, char **line)
 
 int			get_next_line(const int fd, char **line)
 {
-	static char	*buf = "";
+	static char	*buf = NULL;
 	int			ret;
 
 	if (!line || fd < 0)
 		return (-1);
-	if (*buf == '\0')
+	if (!buf)
 		buf = ft_strnew(0);
 	ret = 1;
 	if (loop(fd, &buf, &ret, line))
@@ -61,7 +64,6 @@ int			get_next_line(const int fd, char **line)
 	{
 		*line = ft_strdup(buf);
 		ft_strdel(&buf);
-		buf = ft_strnew(0);
 		return (1);
 	}
 	return (0);
