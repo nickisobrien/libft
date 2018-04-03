@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nobrien <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 15:52:02 by nobrien           #+#    #+#             */
-/*   Updated: 2018/03/06 12:02:41 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/03/29 19:05:37 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# define BUFF_SIZE 42
 
 typedef struct		s_list
 {
@@ -95,6 +94,13 @@ int					ft_islower(char c);
 int					ft_isupper(char c);
 size_t				ft_getfirst(char const *s);
 size_t				ft_getlast(char const *s);
-int 				get_next_line(const int fd, char **line);
+void				ft_strupper(char *str);
+int					ft_upper(char c);
+char				*ft_utoa_base(uintmax_t n, int base);
+int					ft_countdigits(char *str);
+long long			ft_abs(long long num);
+int					ft_wcharbytes(wchar_t w);
+int					ft_wstrbytes(wchar_t *str);
+int					ft_wstrlen(wchar_t *str);
 
 #endif

@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strupper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 15:04:16 by nobrien           #+#    #+#             */
-/*   Updated: 2018/03/29 19:04:29 by nobrien          ###   ########.fr       */
+/*   Created: 2018/03/19 18:36:01 by nobrien           #+#    #+#             */
+/*   Updated: 2018/03/29 19:05:28 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_bzero(void *str, size_t n)
+void	ft_strupper(char *str)
 {
-	ft_memset(str, 0, n);
+	while (*str)
+	{
+		if (*str >= 'a' && *str <= 'z')
+			*str += 'A' - 'a';
+		str++;
+	}
 }

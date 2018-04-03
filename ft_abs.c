@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/20 15:04:16 by nobrien           #+#    #+#             */
-/*   Updated: 2018/03/29 19:04:29 by nobrien          ###   ########.fr       */
+/*   Created: 2018/02/20 15:15:01 by nobrien           #+#    #+#             */
+/*   Updated: 2018/03/29 19:04:27 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *str, size_t n)
+long long	ft_abs(long long num)
 {
-	ft_memset(str, 0, n);
+	return ((num < 0) ? -num : num);
 }
