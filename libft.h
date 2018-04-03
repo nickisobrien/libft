@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 15:52:02 by nobrien           #+#    #+#             */
-/*   Updated: 2018/03/29 19:05:37 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/03 14:47:54 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "ft_printf/includes/ft_printf.h"
 
 typedef struct		s_list
 {

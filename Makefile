@@ -15,6 +15,8 @@ SRC=ft_wstrlen.c ft_wstrbytes.c ft_wcharbytes.c ft_abs.c ft_countdigits.c ft_uto
 OBJ=$(SRC:.c=.o)
 
 $(NAME): libft.h
+	@make -C ft_printf
+	@cp ft_printf/libftprintf.a ./$(NAME)
 	$(CC) $(CFLAGS) -c $(SRC)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
@@ -23,9 +25,11 @@ all: $(NAME)
 
 clean:
 	$(RM) $(OBJ)
+	@make clean -C ft_printf
 
 fclean: clean
 	$(RM) $(NAME)
+	@make fclean -C ft_printf
 
 re: fclean all
 
