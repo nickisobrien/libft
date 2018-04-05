@@ -6,13 +6,13 @@
 /*   By: nobrien <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 16:33:04 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/05 12:35:40 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/05 12:57:24 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void		merge(const int fd, char **buf, int *ret)
+static void		merge(const int fd, char **buf, int *ret)
 {
 	char		str[BUFF_SIZE + 1];
 	char		*rmleaks;
@@ -25,7 +25,7 @@ void		merge(const int fd, char **buf, int *ret)
 	free(rmleaks);
 }
 
-int			loop(const int fd, char **buf, int *ret, char **line)
+static int		loop(const int fd, char **buf, int *ret, char **line)
 {
 	char *ptr;
 	char *ptr2;
