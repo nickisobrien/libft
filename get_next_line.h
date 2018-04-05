@@ -6,7 +6,7 @@
 /*   By: nobrien <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 14:08:37 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/05 12:56:54 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/05 15:12:11 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,5 @@
 # include "libft.h"
 
 int		ft_get_next_line(const int fd, char **line);
-# define BUFF_SIZE 42
 
 #endif
