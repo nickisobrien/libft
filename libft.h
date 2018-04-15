@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 15:52:02 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/05 12:56:40 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/14 20:51:30 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,6 @@ long long			ft_abs(long long num);
 int					ft_wcharbytes(wchar_t w);
 int					ft_wstrbytes(wchar_t *str);
 int					ft_wstrlen(wchar_t *str);
+void				ft_printbits(unsigned char octet);
 
 #endif
