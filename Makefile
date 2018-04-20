@@ -15,7 +15,7 @@ MATH_DIR		= math/
 MEM_DIR			= mem/
 PUT_DIR			= put/
 STR_DIR			= str/
-WCHAR_DIR		= whcar/
+WCHAR_DIR		= wchar/
 
 CFLAGS = -Wall -Wextra -Werror
 
