@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_float.c                                     :+:      :+:    :+:   */
+/*   handle_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/02 11:37:02 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/02 14:39:46 by nobrien          ###   ########.fr       */
+/*   Created: 2018/03/04 12:14:54 by nobrien           #+#    #+#             */
+/*   Updated: 2018/04/19 22:52:48 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
-void		handle_float(double num, t_arg *args)
+void	handle_char(int c, t_arg *args)
 {
-	int i;
-	int prec;
+	char *str;
+	char filler;
 
-	if (num < 0)
+	if (c == 0)
 	{
-		add_char('-', args);
-		num = -num;
+		filler = args->has_zero ? '0' : ' ';
+		if (!args->has_minus)
+			while (args->min_width-- > 1)
+				add_char(filler, args);
+		add_char(0, args);
+		if (args->has_minus)
+			while (args->min_width-- > 1)
+				add_char(filler, args);
 	}
-	handle_int((intmax_t)num, args, 0);
-	num -= (intmax_t)num - 1;
-	add_char('.', args);
-	i = 0;
-	prec = (args->precision && args->precision != -1) ? args->precision : 6;
-	while (i < prec)
+	else
 	{
-		num *= 10;
-		add_char(((intmax_t)num % 10) + '0', args);
-		i++;
+		str = ft_strnew(1);
+		str[0] = c;
+		handle_string(str, args);
+		free(str);
 	}
 }

@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_word_count.c                                :+:      :+:    :+:   */
+/*   handle_float.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/23 09:01:28 by nobrien           #+#    #+#             */
-/*   Updated: 2018/03/29 19:04:31 by nobrien          ###   ########.fr       */
+/*   Created: 2018/04/02 11:37:02 by nobrien           #+#    #+#             */
+/*   Updated: 2018/04/19 22:52:55 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_get_word_count(char const *s, char c)
+void		handle_float(double num, t_arg *args)
 {
-	int num;
+	int i;
+	int prec;
 
-	num = 0;
-	while (*s)
+	if (num < 0)
 	{
-		if (*s != c)
-		{
-			num++;
-			while (*s != c && *s != '\0')
-				s++;
-		}
-		else
-			s++;
+		add_char('-', args);
+		num = -num;
 	}
-	return (num);
+	handle_int((intmax_t)num, args, 0);
+	num -= (intmax_t)num - 1;
+	add_char('.', args);
+	i = 0;
+	prec = (args->precision && args->precision != -1) ? args->precision : 6;
+	while (i < prec)
+	{
+		num *= 10;
+		add_char(((intmax_t)num % 10) + '0', args);
+		i++;
+	}
 }

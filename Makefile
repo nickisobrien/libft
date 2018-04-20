@@ -1,36 +1,65 @@
-NAME=libft.a
+NAME = libft.a
 
-CC=gcc
+# directories
+SRC_DIR = srcs/
+INC_DIR = includes/
+OBJ_DIR = obj/
 
-CFLAGS=-Wall -Wextra -Werror
+ACCESS_DIR		= access/
+BITS_DIR		= bits/
+CASE_DIR		= case/
+FT_PRINTF_DIR	= ft_printf/
+GNL_DIR			= gnl/
+LST_DIR			= lst/
+MATH_DIR		= math/
+MEM_DIR			= mem/
+PUT_DIR			= put/
+STR_DIR			= str/
+WCHAR_DIR		= whcar/
 
-RM=rm -f
+CFLAGS = -Wall -Wextra -Werror
 
-LDFLAGS=-L.
+SRC := $(wildcard $(SRC_DIR)$(ACCESS_DIR)*.c)
+SRC += $(wildcard $(SRC_DIR)$(BITS_DIR)*.c)
+SRC += $(wildcard $(SRC_DIR)$(CASE_DIR)*.c)
+SRC += $(wildcard $(SRC_DIR)$(FT_PRINTF_DIR)*.c)
+SRC += $(wildcard $(SRC_DIR)$(GNL_DIR)*.c)
+SRC += $(wildcard $(SRC_DIR)$(LST_DIR)*.c)
+SRC += $(wildcard $(SRC_DIR)$(MATH_DIR)*.c)
+SRC += $(wildcard $(SRC_DIR)$(MEM_DIR)*.c)
+SRC += $(wildcard $(SRC_DIR)$(PUT_DIR)*.c)
+SRC += $(wildcard $(SRC_DIR)$(STR_DIR)*.c)
+SRC += $(wildcard $(SRC_DIR)$(WCHAR_DIR)*.c)
+OBJ := $(notdir $(SRC))
+OBJ := $(patsubst %, $(OBJ_DIR)%, $(OBJ:.c=.o))
 
-LDLIBS=-lft
+.PHONY: all clean fclean re
 
-SRC=ft_get_next_line.c ft_wstrlen.c ft_wstrbytes.c ft_wcharbytes.c ft_abs.c ft_countdigits.c ft_utoa_base.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c ft_memcmp.c ft_memalloc.c ft_memdel.c ft_strlen.c ft_strdup.c ft_strcpy.c ft_strncpy.c ft_strcat.c ft_strncat.c ft_strlcat.c ft_strchr.c ft_strrchr.c ft_strstr.c ft_strnstr.c ft_strcmp.c ft_strncmp.c ft_atoi.c ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_toupper.c ft_tolower.c ft_strnew.c ft_strdel.c ft_strclr.c ft_striter.c ft_striteri.c ft_strmap.c ft_strmapi.c ft_strequ.c ft_strnequ.c ft_strsub.c ft_strjoin.c ft_strtrim.c ft_strsplit.c ft_itoa.c ft_putchar.c ft_putstr.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c ft_lstiter.c ft_lstmap.c ft_lstnew.c ft_get_word_count.c ft_word_len.c ft_upper.c ft_lower.c ft_getfirst.c ft_getlast.c ft_strupper.c ft_printbits.c
+all: 
+	@make $(NAME)
 
-OBJ=$(SRC:.c=.o)
+$(NAME): $(OBJ)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@echo "Library libft created"
 
-$(NAME): libft.h
-	@make -C ft_printf
-	@cp ft_printf/libftprintf.a ./$(NAME)
-	$(CC) $(CFLAGS) -c $(SRC)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
-
-all: $(NAME)
+$(OBJ_DIR)%.o: $(SRC_DIR)*/%.c
+	@mkdir -p $(OBJ_DIR)
+	@echo "Compiling $<"
+	@gcc -Wall -Wextra -Werror -I $(INC_DIR) -c $< -o $@ 2> temp.log || touch temp.error
+	@if test -s temp.log; then echo "Error in $<\n" && cat temp.log; fi;
+	@rm -f temp.error temp.log
 
 clean:
-	$(RM) $(OBJ)
-	@make clean -C ft_printf
+	@if [ -d "./$(OBJ_DIR)" ]; then\
+		rm -rf $(OBJ_DIR);\
+		echo "Object folder removed";\
+	fi;
 
 fclean: clean
-	$(RM) $(NAME)
-	@make fclean -C ft_printf
+	@if test -e $(NAME); then\
+		/bin/rm -f $(NAME);\
+		echo "Library libft removed";\
+	fi;
 
 re: fclean all
-
-.PHONY: clean fclean

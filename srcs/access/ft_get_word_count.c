@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_octal.c                                     :+:      :+:    :+:   */
+/*   ft_get_word_count.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/18 20:26:36 by nobrien           #+#    #+#             */
-/*   Updated: 2018/03/29 19:04:12 by nobrien          ###   ########.fr       */
+/*   Created: 2018/02/23 09:01:28 by nobrien           #+#    #+#             */
+/*   Updated: 2018/04/19 22:50:38 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "libft.h"
 
-void	handle_octal(uintmax_t num, t_arg *args)
+int	ft_get_word_count(char const *s, char c)
 {
-	char	*str;
+	int num;
 
-	str = ft_utoa_base(num, 8);
-	str = add_prefix(str, args, 1, 0);
-	str = handle_precision(str, args);
-	str = handle_width(str, args);
-	if (str[0])
+	num = 0;
+	while (*s)
 	{
-		handle_string(str, args);
-		free(str);
+		if (*s != c)
+		{
+			num++;
+			while (*s != c && *s != '\0')
+				s++;
+		}
+		else
+			s++;
 	}
-	else if (args->precision != -1)
-		add_char('0', args);
+	return (num);
 }

@@ -6,7 +6,7 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/03 12:35:39 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/03 14:35:09 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/19 22:54:36 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <wchar.h>
-# include "../../libft.h"
+# include "libft.h"
 
 # define BUFF_SIZE 124
 

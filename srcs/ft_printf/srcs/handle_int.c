@@ -6,11 +6,11 @@
 /*   By: nobrien <nobrien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 12:12:13 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/01 13:57:10 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/04/19 22:53:02 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 char		*handle_precision(char *numstr, t_arg *args)
 {
