@@ -6,7 +6,7 @@
 /*   By: nobrien <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 16:33:04 by nobrien           #+#    #+#             */
-/*   Updated: 2018/04/05 12:57:24 by nobrien          ###   ########.fr       */
+/*   Updated: 2018/05/06 15:04:17 by nobrien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int		loop(const int fd, char **buf, int *ret, char **line)
 	return (0);
 }
 
-int			ft_get_next_line(const int fd, char **line)
+int				ft_get_next_line(const int fd, char **line)
 {
 	static char	*buf = NULL;
 	int			ret;
